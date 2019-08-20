@@ -9,7 +9,7 @@
     </title>
 </head>
 <body>
-<h1>
+<h1 class="title">
     Projects
 </h1>
 <ul>
@@ -24,11 +24,10 @@
 </ul>
 <div class="field">
     <div class="control">
-        <a href="/projects/create"><button class="button is-link">A New Project</button>
+        <a href="/projects/create"><button style='margin-top:10px'class="button is-link">Create A New Project</button>
         </a>
     </div>
 </div>
-// master branch
 </body>
 </html>
 @endsection
