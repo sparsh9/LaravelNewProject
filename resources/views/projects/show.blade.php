@@ -10,25 +10,36 @@
         <a href="/projects/{{ $project->id }}/edit">Edit</a>
     </p>
     @if ($project->tasks->count())
-  <div class="box">
-    @foreach($project->tasks as $task)
-        <div>
-            <form method="POST" action="/completed-tasks/{{$task->id}}">
-                @if($task->completed)
-                @method('DELETE')
-                @endif
+        <div class="box">
+            @foreach($project->tasks as $task)
+                <div>
+                    <form method="POST" action="/completed-tasks/{{$task->id}}">
+                        @if($task->completed)
+                            @method('DELETE')
+                        @endif
 
-                @csrf
+                        @csrf
 
-                <label class="checkbox {{$task->completed ? 'is-complete' : ''}}" for="completed">
-                    <input type="checkbox" name="completed" onchange="this.form.submit()" {{$task->completed ? 'checked' : ''}}>
-                    {{$task->description}}
-                </label>
-            </form>
+                        <label class="checkbox {{$task->completed ? 'is-complete' : ''}}" for="completed">
+                            <input type="checkbox" name="completed" onchange="this.form.submit()" {{$task->completed ? 'checked' : ''}}>
+                            {{$task->description}}
+                        </label>
+                    </form>
+
+                    <form method="POST" action="/tasks/{{ $task->id }}">
+                        @method('DELETE')
+                        @csrf
+                        <div class="field">
+                            <div class="control">
+                                <button class="button">Delete Task</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            @endforeach
         </div>
-    @endforeach
-  </div>
-@endif
+    @endif
 
     {{-- Add a new task--}}
 
@@ -46,6 +57,6 @@
                 <button type="submit" class="button is-primary">Add Task</button>
             </div>
         </div>
-   @include('errors')
+        @include('errors')
     </form>
- @endsection
+@endsection

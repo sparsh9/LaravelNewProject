@@ -25,5 +25,10 @@ class ProjectTasksController extends Controller
         return back();
     }
 
+
+    public function destroy(Task $task) {
+        $task -> delete();
+        return back();
+    }
 }
 
